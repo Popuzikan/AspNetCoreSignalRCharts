@@ -1,7 +1,13 @@
 const data = JSON.parse(document.getElementById('data').innerHTML);
 
 
-var corrGraph = new WaveForm(document.getElementById('corrWaveForm'));
+var corrGraph1 = new WaveForm(document.getElementById('corrWaveForm1'));
+
+var corrGraph2 = new WaveForm(document.getElementById('corrWaveForm2'));
+
+var corrGraph3 = new WaveForm(document.getElementById('corrWaveForm3'));
+
+var corrGraph4 = new WaveForm(document.getElementById('corrWaveForm4'));
 
 const signalHubConnection = new signalR.HubConnectionBuilder()
     .withUrl(data.url)
@@ -10,7 +16,14 @@ const signalHubConnection = new signalR.HubConnectionBuilder()
 
 signalHubConnection.on("addChartData", (data) => {
     console.log(data);
-    corrGraph.extendTraces([data.x]);
+
+    corrGraph1.extendTraces([data.x]);
+
+    corrGraph2.extendTraces([data.x]);
+
+    corrGraph3.extendTraces([data.x]);
+
+    corrGraph4.extendTraces([data.x]);
 });
 
 signalHubConnection.start();

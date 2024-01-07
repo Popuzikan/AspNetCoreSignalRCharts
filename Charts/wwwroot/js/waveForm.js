@@ -1,3 +1,5 @@
+const { color } = require("../lib/chartjs/helpers.esm");
+
 function WaveForm(element) {
     var _element = element;
     var _tracesCount;
@@ -8,23 +10,33 @@ function WaveForm(element) {
 
     function init(element) {
         var secondsAccumulationTime = 0.02;
-        var SamplingRate = 350;
-        _xValues = Array(100).fill().map((_, i) => i / SamplingRate * 1000);
+        var SamplingRate = 1000;
+        _xValues = Array(SamplingRate).fill().map((_, i) => i);
 
         var layout = {
-            title: 'Развертка по времени',
             yaxis: {
-                //range: [MIN_Y, MAX_Y],
-                autorange: true,
-                title: {
-                    text: 'Амплитуда',
-                }
+                range: [0, 500],
+                //autorange: true,
+                //title: {
+                //    text: 'Амплитуда',
+                //}
             },
-            xaxis: {
-                title: {
-                    text: 'Время, мс'
-                },
-            }
+
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 2,
+                pad: 0
+            },
+
+            height: 100,
+            width: 500,
+            //xaxis: {
+            //    title: {
+            //        text: ''
+            //    },
+            //}         
         };
 
         Plotly.react(element, [], layout, { responsive: true });
@@ -57,7 +69,14 @@ function WaveForm(element) {
                 y: [],
                 x: _xValues,
                 mode: 'lines',
-                name: 'Канал ' + (i + 1)
+               // name: 'Канал ' + (i + 1),
+                fill: 'tonexty',
+                //type: 'bar',
+                line: {
+                    shape: 'spline',
+                    color: 'green',
+                    width : 1
+                }
             };
         })
         Plotly.addTraces(_element, traces);
