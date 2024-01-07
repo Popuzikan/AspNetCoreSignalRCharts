@@ -1,3 +1,3 @@
 namespace Charts.Services;
 
-public record Point(string Label, int Value);
+public record Point(float [] x, float [] y);

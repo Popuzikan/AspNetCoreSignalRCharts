@@ -8,9 +8,9 @@ builder.Services.AddSignalR();
 
 // our data source, could be a database
 builder.Services.AddSingleton(_ => {
-    var buffer = new Buffer<Point>(10);
+    var buffer = new Buffer<Point>(350);
     // start with something that can grow
-    for (var i = 0; i < 7; i++) 
+    for (var i = 0; i < 350; i++) 
         buffer.AddNewRandomPoint();
 
     return buffer;

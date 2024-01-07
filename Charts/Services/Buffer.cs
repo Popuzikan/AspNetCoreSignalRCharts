@@ -24,12 +24,28 @@ public class Buffer<T> : Queue<T>
 
 public static class BufferExtensions
 {
+
+    static float [] x = new float[350];
+    static float [] y = new float[350];
+
+
+
     public static Point AddNewRandomPoint(this Buffer<Point> buffer)
     {
         var now = DateTime.Now.AddMonths(buffer.TotalItemsAddedCount);
         var year = now.Year;
         var monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(now.Month);
-        var point = new Point($"{monthName} ({year})", RandomNumberGenerator.GetInt32(1, 11));
+        
+
+        for (int i = 0; i < 350; i++)
+        {
+            x[i] = RandomNumberGenerator.GetInt32(1, 50);
+            y[i] = i;
+
+        }
+
+  
+        var point = new Point(x,y);
         buffer.Add(point);
         return point;
     }
