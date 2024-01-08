@@ -37,7 +37,6 @@
 
         extend.x = [traces.x.x]; // это тоже
 
-
         Plotly.extendTraces(_element, extend, _tracesIndexes, 10);
     }
 

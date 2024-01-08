@@ -4,7 +4,9 @@
 @inject Buffer<Point> Buffer
 
 
-<link rel="stylesheet" href="~/css/index.css" /> @*подключение стилей*@
+<link rel="stylesheet" href="~/css/index.css" />    @*подключение стилей*@
+<link rel="stylesheet" href="~/css/acoustic.css" /> @*подключение стилей*@
+<link rel="stylesheet" href="~/css/map.css" />      @*подключение стилей*@
 
 @{
     Layout = null;
@@ -18,7 +20,37 @@
 <head>
     <title>Silence Web Client</title>
 </head>
-    <div class="graph-content">
+
+
+
+ @* <div id="container">
+    <div id="header">
+        <h2>header (шапка сайта)</h2>
+    </div>
+
+    <div id="navigation">
+        <h2>Блок навигации</h2>
+    </div>
+
+    <div class="rf-content" id="sidebar">
+
+        <div class ="col-1-3" id="corrWaveForm1">900 MGz</div>
+
+        <div class ="col-2-3" id="corrWaveForm2">1.5 GGz</div>
+
+        <div class="col-3-3" id="corrWaveForm3">2.4 GGz</div>
+
+        <div class ="col-3-4" id="corrWaveForm4">5.8 GGz</div>
+
+        <h2>Левая панель</h2>
+    </div>
+
+
+
+</div> *@
+
+<div id="sidebar">
+
         <div class="col-1-3" id="corrWaveForm1">900 MGz</div>
 
         <div class="col-2-3" id="corrWaveForm2">1.5 GGz</div>
@@ -26,9 +58,21 @@
         <div class="col-3-3" id="corrWaveForm3">2.4 GGz</div>
 
         <div class="col-3-4" id="corrWaveForm4">5.8 GGz</div>
-    </div>
 
-     <script id="data" type="application/json">
+        <div class="col-4-4" id="corrWaveForm5">Acoustic</div>
+@* 
+    <div id="navigation">
+        <h2>Управление подавлением</h2>
+        <a href="#" class="button12">кнопка</a>
+    </div>
+ *@
+</div>
+
+<div id="content">
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A24b39a7907a53bcf664da6c8928cda2426a9e0a261d1dde1e24180d0fc5ebbe8&amp;width=auto&amp;height=auto&amp;lang=ru_RU&amp;scroll=true"></script>
+</div>
+    <script id="data" type="application/json">
+
     @Json.Serialize(
         new
         {
@@ -42,6 +86,7 @@
 <script src="~/lib/plotly/plotly-2.8.3.min.js"></script>
 <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
 <script src="~/js/WaveForm.js"></script>
+<script src="~/js/AcousticWaveForm.js"></script>
 <script src="~/js/index.js"></script>
 </html>
 

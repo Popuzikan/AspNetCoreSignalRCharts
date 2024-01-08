@@ -9,6 +9,9 @@ var corrGraph3 = new WaveForm(document.getElementById('corrWaveForm3'));
 
 var corrGraph4 = new WaveForm(document.getElementById('corrWaveForm4'));
 
+var corrGraph5 = new AcousticWaveForm(document.getElementById('corrWaveForm5'));
+
+
 const signalHubConnection = new signalR.HubConnectionBuilder()
     .withUrl(data.url)
     .configureLogging(signalR.LogLevel.Information)
@@ -24,6 +27,9 @@ signalHubConnection.on("addChartData", (data) => {
     corrGraph3.extendTraces([data.x]);
 
     corrGraph4.extendTraces([data.x]);
+
+    corrGraph5.extendTraces([data.x]);
+
 });
 
 signalHubConnection.start();

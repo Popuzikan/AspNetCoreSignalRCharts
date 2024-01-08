@@ -1,35 +1,89 @@
-﻿.graph-content div {
-    width: 50%;
-}
-
-.col-1-3 {
-    /*  height: 40%;
-    width: 35%;*/
+﻿.col-1-3 {
     display: inline-block;
-    margin: 0px;
-    padding: 0px;
+    text-align: center;
+    color: white;
 }
 
 .col-2-3 {
-/*    height: 40%;
-    width: 35%;*/
     display: inline-block;
-    margin:0px;
-    padding: 0px;
+    text-align: center;
+    color: white;
 }
 
 .col-3-3 {
-/*    height: 40%;
-    width: 35%;*/
     display: inline-block;
-    margin: 0px;
-    padding: 0px;
+    text-align: center;
+    color: white;
 }
 
 .col-3-4 {
-/*    height: 40%;
-    width: 35%;*/
     display: inline-block;
-    margin: 0px;
-    padding: 0px;
+    text-align: center;
+    color: white;
 }
+
+#button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+a.button12 {
+    position: relative;
+    display: inline-block;
+    font-size: 100%;
+    font-weight: 1500;
+    color: #fff;
+    text-shadow: #053852 -1px 1px, #053852 1px 1px, #053852 1px -1px, #053852 -1px -1px;
+    text-decoration: none;
+    user-select: none;
+    padding: .3em .7em;
+    outline: none;
+    border-radius: 7px;
+    background: #053852 repeating-linear-gradient(135deg, #053852, #053852 10px, #1679ad 10px, #1679ad 20px, #053852 20px);
+    box-shadow: inset -2px -2px rgba(0,0,0,.3), inset 2px 2px rgba(255,255,255,.3);
+    transition: background-position 999999s, color 999999s, text-shadow 999999s;
+}
+
+    a.button12:hover, a.button12:focus {
+        text-shadow: #0175b1 -1px 1px, #0175b1 1px 1px, #0175b1 1px -1px, #0175b1 -1px -1px;
+        background: #0175b1 repeating-linear-gradient(135deg, #0175b1, #0175b1 10px, #8fd2f5 10px, #8fd2f5 20px, #0175b1 20px) no-repeat;
+        background-size: 1000% 100%;
+    }
+
+    a.button12:hover {
+        background-position: 0 0;
+    }
+
+    a.button12:focus {
+        color: rgba(255,255,255,0);
+        text-shadow: rgba(1,117,177,0) -1px 1px, rgba(1,117,177,0) 1px 1px, rgba(1,117,177,0) 1px -1px, rgba(1,117,177,0) -1px -1px;
+        background-position: 900% 0;
+        transition: background-position linear 600s, color .5s, text-shadow .5s;
+    }
+
+    a.button12:after {
+        content: "загрузка\2026";
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: .3em .7em;
+        color: rgba(0,0,0,0);
+        text-shadow: none;
+        transition: 5s;
+    }
+
+    a.button12:focus:after {
+        color: #fff;
+        text-shadow: #0175b1 -1px 1px, #0175b1 1px 1px, #0175b1 1px -1px, #0175b1 -1px -1px;
+        transition: .5s;
+    }
+
+

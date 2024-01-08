@@ -1,4 +1,4 @@
-function WaveForm(element) {
+function AcousticWaveForm(element) {
     var _element = element;
     var _tracesCount;
     var _tracesIndexes;
@@ -26,7 +26,7 @@ function WaveForm(element) {
                 //}
             },
             xaxis: {
-                
+
                 //autorange: true,
                 //title: {
                 //    text: 'Амплитуда',
@@ -47,17 +47,11 @@ function WaveForm(element) {
                 pad: 0
             },
 
-            height: 120,
+            height: 200,
             width: 750,
-            plot_bgcolor: 'rgba(0, 0, 0, 0)',
-            paper_bgcolor: 'rgba(0, 0, 0, 0)',
 
-            
-            //xaxis: {
-            //    title: {
-            //        text: ''
-            //    },
-            //}         
+            plot_bgcolor: 'rgba(0, 0, 0, 0)',
+            paper_bgcolor: 'rgba(0, 0, 0, 0)',        
         };
 
         Plotly.react(element, [], layout, { responsive: true });
@@ -95,7 +89,7 @@ function WaveForm(element) {
                 //type: 'bar',
                 line: {
                     shape: 'spline',
-                    color: 'green',
+                    color: 'blue',
                     width : 1
                 }
             };
