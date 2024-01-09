@@ -27,7 +27,7 @@ signalHubConnection.on("addChartData", (data) => {
 
     corrGraph4.extendTraces([data.g, data.h]); // 5.8 RF
 
-    corrGraph5.extendTraces([data.a]);
+    corrGraph5.extendTraces([data.k, data.l]); // acoustic
 
 });
 

@@ -11,11 +11,14 @@ namespace Charts.Services
     public class UDPServer : BackgroundService
     {
         private const int _bytesCount = 1924;
+        private const int _bytesACCount = 6804;
 
         public const int PORT_1_5 = 30100;
         public const int PORT_2_4 = 30101;
         public const int PORT_5_2 = 30102;
         public const int PORT_5_8 = 30103;
+
+        public const int PORT_AC = 30200;
 
         private readonly IHubContext<UdpHub> _hub;
 
@@ -31,6 +34,11 @@ namespace Charts.Services
         private float[] _sendSamples58 = new float[480];
         private float[] _sendSfarSamples58 = new float[480];
 
+        private float[] _sendSamplesAC = new float[850];
+        private float[] _sendUPRSamplesAC = new float[850];
+
+
+
         private Socket _socket15;
         private EndPoint _eP15;
 
@@ -43,12 +51,18 @@ namespace Charts.Services
         private Socket _socket58;
         private EndPoint _eP58;
 
+        private Socket _socketAC;
+        private EndPoint _ePAC;
+
         private byte[] _buffer_recv;
+        private byte[] _buffer_recvAC;
 
         private ArraySegment<byte> _buffer_recv_segment15;
         private ArraySegment<byte> _buffer_recv_segment24;
         private ArraySegment<byte> _buffer_recv_segment52;
         private ArraySegment<byte> _buffer_recv_segment58;
+        private ArraySegment<byte> _buffer_recv_segmentAC;
+
 
         public UDPServer(IHubContext<UdpHub> hub)
         {
@@ -61,35 +75,70 @@ namespace Charts.Services
         public void Initialize()
         { 
             _buffer_recv = new byte[_bytesCount];
+            _buffer_recvAC = new byte[_bytesACCount];
+
 
             _buffer_recv_segment15 = new(_buffer_recv);
             _buffer_recv_segment24 = new(_buffer_recv);
             _buffer_recv_segment52 = new(_buffer_recv);
             _buffer_recv_segment58 = new(_buffer_recv);
 
+            _buffer_recv_segmentAC = new(_buffer_recvAC);
+
+
             _eP15 = new IPEndPoint(IPAddress.Any, PORT_1_5);
             _eP24 = new IPEndPoint(IPAddress.Any, PORT_2_4);
             _eP52 = new IPEndPoint(IPAddress.Any, PORT_5_2);
             _eP58 = new IPEndPoint(IPAddress.Any, PORT_5_8);
+            _ePAC = new IPEndPoint(IPAddress.Any, PORT_AC);
+
 
             _socket15 = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _socket24 = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _socket52 = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _socket58 = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            _socketAC = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
 
             _socket15.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.PacketInformation, true);
             _socket24.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.PacketInformation, true);
             _socket52.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.PacketInformation, true);
             _socket58.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.PacketInformation, true);
+            _socketAC.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.PacketInformation, true);
+
 
             _socket15.Bind(_eP15);
             _socket24.Bind(_eP24);
             _socket52.Bind(_eP52);
             _socket58.Bind(_eP58);
+            _socketAC.Bind(_ePAC);
+
         }
 
         public void StartListeningPortsLoop()
         {
+
+            _ = Task.Factory.StartNew(async () =>
+            {
+                SocketReceiveMessageFromResult resAC;
+
+                while (true)
+                {
+                    resAC = await _socketAC.ReceiveMessageFromAsync(_buffer_recv_segmentAC, SocketFlags.None, _ePAC);
+
+                    for (int i = 0; i < (_buffer_recv_segmentAC.ToArray().Length - 4) / 2; i += 4)
+                    {
+                        _sendSamplesAC[i / 4] = BitConverter.ToSingle(_buffer_recv_segmentAC.ToArray(), i);
+                    }
+
+                    for (int i = (_buffer_recv_segmentAC.ToArray().Length - 4) / 2; i < (_buffer_recv_segmentAC.ToArray().Length - 4); i += 4)
+                    {
+                        _sendUPRSamplesAC[i / 4] = BitConverter.ToSingle(_buffer_recv_segmentAC.ToArray(), i);
+                    }
+                }
+            });
+
+
 
             _ = Task.Factory.StartNew(async () =>
             {
@@ -183,11 +232,11 @@ namespace Charts.Services
                 await _hub.Clients.All.SendAsync(
                         "addChartData",
                         new PointRF(_sendSamples15, _sendSfarSamples15, _sendSamples24, _sendSfarSamples24,
-                                    _sendSamples52, _sendSfarSamples52, _sendSamples58, _sendSfarSamples58),
+                                    _sendSamples52, _sendSfarSamples52, _sendSamples58, _sendSfarSamples58, _sendSamplesAC, _sendUPRSamplesAC),
                         cancellationToken: stoppingToken
                     );
 
-                    await Task.Delay(TimeSpan.FromSeconds(0.05), stoppingToken);         
+                    await Task.Delay(TimeSpan.FromSeconds(0.01), stoppingToken);         
              }
         }
     }
