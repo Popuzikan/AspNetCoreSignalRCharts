@@ -8,12 +8,12 @@ function WaveForm(element) {
 
     function init(element) {
         var secondsAccumulationTime = 0.02;
-        var SamplingRate = 1000;
+        var SamplingRate = 480;
         _xValues = Array(SamplingRate).fill().map((_, i) => i);
 
         var layout = {
             yaxis: {
-                range: [0, 500],
+                range: [0, 300],
                 //autorange: true,
                 //title: {
                 //    text: 'Амплитуда',

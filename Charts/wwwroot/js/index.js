@@ -18,7 +18,6 @@ const signalHubConnection = new signalR.HubConnectionBuilder()
     .build();
 
 signalHubConnection.on("addChartData", (data) => {
-    console.log(data);
 
     corrGraph1.extendTraces([data.x]);
 
@@ -28,7 +27,7 @@ signalHubConnection.on("addChartData", (data) => {
 
     corrGraph4.extendTraces([data.x]);
 
-    corrGraph5.extendTraces([data.x]);
+    corrGraph5.extendTraces([data.x], [data.y]);
 
 });
 

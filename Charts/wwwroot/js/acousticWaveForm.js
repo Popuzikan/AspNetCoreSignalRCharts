@@ -8,12 +8,13 @@ function AcousticWaveForm(element) {
 
     function init(element) {
         var secondsAccumulationTime = 0.02;
-        var SamplingRate = 1000;
+        var SamplingRate = 480;
         _xValues = Array(SamplingRate).fill().map((_, i) => i);
 
         var layout = {
+
             yaxis: {
-                range: [0, 500],
+                range: [0, 300],
                 //autorange: true,
                 //title: {
                 //    text: 'Амплитуда',
@@ -47,12 +48,24 @@ function AcousticWaveForm(element) {
                 pad: 0
             },
 
+
             height: 200,
             width: 750,
 
             plot_bgcolor: 'rgba(0, 0, 0, 0)',
             paper_bgcolor: 'rgba(0, 0, 0, 0)',        
         };
+
+        //var data = [
+        //    {
+        //        y: [],
+        //        x: [],
+
+        //    },
+        //    {
+        //        y: [],
+        //        x: [],
+        //    }];
 
         Plotly.react(element, [], layout, { responsive: true });
     }

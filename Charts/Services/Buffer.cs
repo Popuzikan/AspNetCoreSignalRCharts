@@ -24,18 +24,15 @@ public class Buffer<T> : Queue<T>
 
 public static class BufferExtensions
 {
-
-    static float [] x = new float[1000];
-    static float [] y = new float[1000];
-
-
+    static float[] x = new float[1000];
+    static float[] y = new float[1000];
 
     public static Point AddNewRandomPoint(this Buffer<Point> buffer)
     {
         var now = DateTime.Now.AddMonths(buffer.TotalItemsAddedCount);
         var year = now.Year;
         var monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(now.Month);
-        
+
 
         for (int i = 0; i < 1000; i++)
         {
@@ -43,20 +40,18 @@ public static class BufferExtensions
             {
                 x[i] = RandomNumberGenerator.GetInt32(1, 100);
             }
-            else if (i > 400 && i < 600) {
+            else if (i > 400 && i < 600)
+            {
 
                 x[i] = RandomNumberGenerator.GetInt32(150, 300);
             }
             else
-                x[i] = RandomNumberGenerator.GetInt32(1, 100);  
-
+                x[i] = RandomNumberGenerator.GetInt32(1, 100);
 
             y[i] = i;
-
-
         }
 
-        var point = new Point(x,y);
+        var point = new Point(x, y);
         buffer.Add(point);
         return point;
     }
