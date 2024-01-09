@@ -2,6 +2,7 @@ function WaveForm(element) {
     var _element = element;
     var _tracesCount;
     var _tracesIndexes;
+    var colors = ['blue', 'yellow'];
     var _xValues;
 
     init(_element);
@@ -48,7 +49,7 @@ function WaveForm(element) {
             },
 
             height: 120,
-            width: 750,
+            width: 800,
             plot_bgcolor: 'rgba(0, 0, 0, 0)',
             paper_bgcolor: 'rgba(0, 0, 0, 0)',
 
@@ -95,7 +96,7 @@ function WaveForm(element) {
                 //type: 'bar',
                 line: {
                     shape: 'spline',
-                    color: 'green',
+                    color: colors[i],
                     width : 1
                 }
             };

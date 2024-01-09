@@ -28,14 +28,14 @@
 #sidebar {
     background: #2d2d2e;
     float: left;
-    width: 40%;
+    width: 50%;
     height: 1000px;
 }
 
 #content {
     background: #2d2d2e;
     float: right;
-    width: 60%;
+    width: 50%;
     height: 1000px;
 }
 

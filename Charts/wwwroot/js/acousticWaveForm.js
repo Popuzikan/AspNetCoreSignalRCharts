@@ -48,9 +48,8 @@ function AcousticWaveForm(element) {
                 pad: 0
             },
 
-
             height: 200,
-            width: 750,
+            width: 800,
 
             plot_bgcolor: 'rgba(0, 0, 0, 0)',
             paper_bgcolor: 'rgba(0, 0, 0, 0)',        

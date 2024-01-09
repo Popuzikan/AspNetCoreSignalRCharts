@@ -1,7 +1,5 @@
 using Charts.Hubs;
-using Charts.Interfaces;
 using Charts.Services;
-using Charts.ServicesAbstract;
 using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +26,6 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 app.MapRazorPages();
-app.MapHub<ChartHub>(ChartHub.Url);
+app.MapHub<UdpHub>(UdpHub.Url);
 
 app.Run();

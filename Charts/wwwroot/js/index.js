@@ -19,15 +19,15 @@ const signalHubConnection = new signalR.HubConnectionBuilder()
 
 signalHubConnection.on("addChartData", (data) => {
 
-    corrGraph1.extendTraces([data.x]);
+    corrGraph1.extendTraces([data.a, data.b]); // 1.5 RF
 
-    corrGraph2.extendTraces([data.x]);
+    corrGraph2.extendTraces([data.c, data.d]); // 2.4 RF
 
-    corrGraph3.extendTraces([data.x]);
+    corrGraph3.extendTraces([data.i, data.f]); // 5.2 RF
 
-    corrGraph4.extendTraces([data.x]);
+    corrGraph4.extendTraces([data.g, data.h]); // 5.8 RF
 
-    corrGraph5.extendTraces([data.x], [data.y]);
+    corrGraph5.extendTraces([data.a]);
 
 });
 
