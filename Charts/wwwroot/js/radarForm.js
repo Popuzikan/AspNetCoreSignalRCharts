@@ -13,10 +13,12 @@ function RadarForm(element) {
         layout = {
            
             showlegend: false,
+
+            angularaxis: { color: '#ffffff' },
             plot_bgcolor: 'rgba(0, 0, 0, 0)',
             paper_bgcolor: 'rgba(0, 0, 0, 0)',
-            height: 500,
-            width: 500,
+            height: 300,
+            width: 300,
 
             margin: {
                 l: 0,

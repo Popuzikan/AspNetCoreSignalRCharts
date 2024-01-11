@@ -29,6 +29,12 @@
     border-radius: 5px;
 }
 
+.colRadar {
+    position:absolute;
+    top:0;
+    right : inherit;
+}
+
 
 
 
@@ -86,4 +92,4 @@ a.button12 {
         transition: .5s;
     }
 
-
+
