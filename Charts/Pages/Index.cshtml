@@ -3,7 +3,6 @@
 @model Charts.Pages.Index
 @inject Buffer<PointRF> Buffer
 
-
 <link rel="stylesheet" href="~/css/index.css" />    @*подключение стилей*@
 <link rel="stylesheet" href="~/css/acoustic.css" /> @*подключение стилей*@
 <link rel="stylesheet" href="~/css/map.css" />      @*подключение стилей*@
@@ -34,16 +33,12 @@
         <div class="col-3-4" id="corrWaveForm4">5.8 GGz</div>
 
         <div class="col-4-4" id="corrWaveForm5">Acoustic</div>
-@* 
-    <div id="navigation">
-        <h2>Управление подавлением</h2>
-        <a href="#" class="button12">кнопка</a>
-    </div>
- *@
+
 </div>
 
 <div id="content">
     <div class="colRadar" id="radarForm"></div>
+
     <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A24b39a7907a53bcf664da6c8928cda2426a9e0a261d1dde1e24180d0fc5ebbe8&amp;width=auto&amp;height=auto&amp;lang=ru_RU&amp;scroll=true"></script>
 
 </div>
