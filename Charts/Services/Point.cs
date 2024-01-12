@@ -6,4 +6,5 @@ public record PointRF(float[] a, float[] b,
                       float[] c, float[] d,
                       float[] i, float[] f,
                       float[] g, float[] h,
-                      float[] k, float[] l);
+                      float[] k, float[] l,
+                      int  y, int z);

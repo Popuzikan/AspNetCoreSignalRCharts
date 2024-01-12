@@ -37,6 +37,9 @@ namespace Charts.Services
         private float[] _sendSamplesAC = new float[850];
         private float[] _sendUPRSamplesAC = new float[850];
 
+        private int _azAnScan;
+        private int _azAn;
+
 
 
         private Socket _socket15;
@@ -117,7 +120,6 @@ namespace Charts.Services
 
         public void StartListeningPortsLoop()
         {
-
             _ = Task.Factory.StartNew(async () =>
             {
                 SocketReceiveMessageFromResult resAC;
@@ -137,8 +139,6 @@ namespace Charts.Services
                     }
                 }
             });
-
-
 
             _ = Task.Factory.StartNew(async () =>
             {
@@ -228,15 +228,26 @@ namespace Charts.Services
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         { 
              while (!stoppingToken.IsCancellationRequested)      
-             {              
+             {
+                _azAnScan+=5;
+
+                if (_azAnScan>360)
+                {
+                    _azAnScan = 0;
+                    _azAn += 10;
+                }
+                if (_azAn > 360)
+                { _azAn = 0;}
+
                 await _hub.Clients.All.SendAsync(
                         "addChartData",
                         new PointRF(_sendSamples15, _sendSfarSamples15, _sendSamples24, _sendSfarSamples24,
-                                    _sendSamples52, _sendSfarSamples52, _sendSamples58, _sendSfarSamples58, _sendSamplesAC, _sendUPRSamplesAC),
+                                    _sendSamples52, _sendSfarSamples52, _sendSamples58, _sendSfarSamples58, 
+                                    _sendSamplesAC, _sendUPRSamplesAC, _azAnScan, _azAn),
                         cancellationToken: stoppingToken
                     );
 
-                    await Task.Delay(TimeSpan.FromSeconds(0.01), stoppingToken);         
+                    await Task.Delay(TimeSpan.FromSeconds(0.1), stoppingToken);         
              }
         }
     }

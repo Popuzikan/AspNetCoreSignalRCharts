@@ -30,9 +30,11 @@
 }
 
 .colRadar {
-    position:absolute;
-    top:0;
-    right : inherit;
+    position: absolute;
+    top: 50%;
+    left: 33%;
+    margin-right: 50%;
+    transform: translate(50%, -50%)
 }
 
 
