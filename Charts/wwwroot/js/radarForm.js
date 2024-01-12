@@ -5,6 +5,10 @@ function RadarForm(element) {
     var _tracesIndexes;
     var _xValues;
 
+    var counT = 0;
+    var Z = 0;
+    var colores = ['red','green']
+
     init(_element);
 
     function init(element) {
@@ -65,7 +69,7 @@ function RadarForm(element) {
 
     function extendTraces(traces) {
         if (_tracesCount != traces.length) {
-            resetTraces(1, traces);
+            resetTraces(2, traces);
         }
 
         var extend = {};
@@ -79,27 +83,36 @@ function RadarForm(element) {
         _element.data = [];
         _tracesCount = newTracesCount;
 
+        counT = 0;
+
         _tracesIndexes = Array(_tracesCount)
             .fill()
             .map(function (_, i) {
                 return i
             });
 
+
         var traces = Array(_tracesCount).fill().map(function (_, i) {
             return {
-                r: [0, 2, 2, 0, 2, 2, 0],
-                theta: dataI,
+                 r: [0, 2, 2, 0, 2, 2, 0],
+                 theta: dataI,
+              
                 mode: 'lines',
-               // name: 'Канал ' + (i + 1),
+
+                // name: 'Канал ' + (i + 1),
                 type: "scatterpolar",
                 fill: "toself",
                 fillcolor: 'green',
                 opacity: 0.5,
                 line: {
                     color: 'green',
-                    width : 2
-                }
+                    width: 2
+                },
+
+
+                
             };
+            
         })
         Plotly.addTraces(_element, traces);
     }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Charts.Hubs;
 using Microsoft.AspNetCore.SignalR;
 
-
+#nullable disable
 namespace Charts.Services
 { 
     public class UDPServer : BackgroundService
