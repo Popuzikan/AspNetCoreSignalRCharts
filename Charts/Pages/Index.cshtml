@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="~/css/acoustic.css" /> @*подключение стилей*@
 <link rel="stylesheet" href="~/css/map.css" />      @*подключение стилей*@
 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
 @{
     Layout = null;
     var x = Buffer;
@@ -35,38 +39,96 @@
         <div class="col-4-4" id="corrWaveForm5">Acoustic</div>
 
 
-    <div id="inputForm">
-        <input type="button1" class="btn" id="sendBtn" value="900 MGz" />
-        <input type="button2" class="btn" id="sendBtn" value="1.5 GGz" />
-        <input type="button3" class="btn" id="sendBtn" value="2.4 GGz" />
-        <input type="button4" class="btn" id="sendBtn" value="5.8 MGz" />
+    <div class="col-RF" id="inputForm">
+        <input type="button" class="btn" id="sendBtn1" value="900 MGz" />
+        <input type="button" class="btn" id="sendBtn2" value="1.5 GGz" />
+        <input type="button" class="btn" id="sendBtn3" value="2.4 GGz" />
+        <input type="button" class="btn" id="sendBtn4" value="5.8 GGz" />
 
+       
         <script>
-            const button1 = document.querySelector("input");
 
-            button1.addEventListener("click", updateButton);
+           
 
-            function updateButton() {
-                if (button1.value === "900 MGz") {
+            const button1 = document.getElementById("sendBtn1");
+            button1.addEventListener("click", updateButton1);
+
+            function updateButton1() {
+
+                if (button1.value == "900 MGz") {
                     button1.value = "Active";
-                } else {
-                    button1.value = "900 MGz";
+
+                  
+                }
+                else {
+                    button1.value = "900 MGz"
                 }
             }
-        </script>
+            const button2 = document.getElementById("sendBtn2");
+            button2.addEventListener("click", updateButton2);
+
+            function updateButton2() {
+
+                if (button2.value == "1.5 GGz") {
+                    button2.value = "Active";
+                }
+                else { 
+                    button2.value = "1.5 GGz";
+                }
+
+            }
+            const button3 = document.getElementById("sendBtn3");
+            button3.addEventListener("click", updateButton3);
+
+            function updateButton3() {
+
+                if (button3.value == "2.4 GGz") {
+                    button3.value = "Active";
+                }
+                else {
+                    button3.value = "2.4 GGz";
+                }
+
+            }
+
+            const button4 = document.getElementById("sendBtn4");
+            button4.addEventListener("click", updateButton4);
+
+            function updateButton4() {
+
+                if (button4.value == "5.8 GGz") {
+                    button4.value = "Active";
+                }
+                else {
+                    button4.value = "5.8 GGz";
+                }
+            }
 
 
+
+            const hubConnection = new signalR.HubConnectionBuilder()
+                .withUrl("/udp")
+                .build();
+
+
+            document.getElementById("sendBtn1").addEventListener("click", function () {
+
+
+
+                
+                hubConnection.invoke("Send", { 'Pm1' : 'true'});
+              
+            });
+
+
+
+          
+            hubConnection.start();
+
+            
+        </script>      
     </div>
-
-    
-
-
-
-
 </div>
-
-
-
 
 
 <div id="content">

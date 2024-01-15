@@ -37,13 +37,15 @@
     transform: translate(50%, -50%)
 }
 
-
+.col-RF {
+    margin:50px 20px 20px 20px;
+}
 
 .btn {
     font-size: 20px;
     font-family: monospace;
     color: #fff;
-    background: linear-gradient(to left, #8E2DE2, #4A00E0, #8E2DE2);
+    background: linear-gradient(to left, #3C3B3F, #3C3B3F, #0f9b0f);
     text-decoration: none;
     border-radius: 10px;
     padding: 20px 70px;
@@ -51,6 +53,7 @@
     cursor: pointer;
     background-size: 200%;
     top: 40px;
+    text-align: center;
 }
 
 .btn:hover {
