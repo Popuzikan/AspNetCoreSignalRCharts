@@ -34,7 +34,40 @@
 
         <div class="col-4-4" id="corrWaveForm5">Acoustic</div>
 
+
+    <div id="inputForm">
+        <input type="button1" class="btn" id="sendBtn" value="900 MGz" />
+        <input type="button2" class="btn" id="sendBtn" value="1.5 GGz" />
+        <input type="button3" class="btn" id="sendBtn" value="2.4 GGz" />
+        <input type="button4" class="btn" id="sendBtn" value="5.8 MGz" />
+
+        <script>
+            const button1 = document.querySelector("input");
+
+            button1.addEventListener("click", updateButton);
+
+            function updateButton() {
+                if (button1.value === "900 MGz") {
+                    button1.value = "Active";
+                } else {
+                    button1.value = "900 MGz";
+                }
+            }
+        </script>
+
+
+    </div>
+
+    
+
+
+
+
 </div>
+
+
+
+
 
 <div id="content">
     <div class="colRadar" id="radarForm"></div>
@@ -44,6 +77,9 @@
 </div>
     <script id="data" type="application/json">
 
+
+
+
     @Json.Serialize(
         new
         {
@@ -51,6 +87,7 @@
             y,
             url = "/udp",
         })    
+
     </script>
 
 
