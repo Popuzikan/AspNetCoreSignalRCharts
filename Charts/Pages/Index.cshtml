@@ -6,11 +6,7 @@
 <link rel="stylesheet" href="~/css/index.css" />    @*подключение стилей*@
 <link rel="stylesheet" href="~/css/acoustic.css" /> @*подключение стилей*@
 <link rel="stylesheet" href="~/css/map.css" />      @*подключение стилей*@
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-
 @{
     Layout = null;
     var x = Buffer;
@@ -38,27 +34,20 @@
 
         <div class="col-4-4" id="corrWaveForm5">Acoustic</div>
 
-
     <div class="col-RF" id="inputForm">
         <input type="button" class="btn" id="sendBtn1" value="900 MGz" />
         <input type="button" class="btn" id="sendBtn2" value="1.5 GGz" />
         <input type="button" class="btn" id="sendBtn3" value="2.4 GGz" />
         <input type="button" class="btn" id="sendBtn4" value="5.8 GGz" />
-
-       
+        
         <script>
-
-           
-
             const button1 = document.getElementById("sendBtn1");
             button1.addEventListener("click", updateButton1);
 
             function updateButton1() {
 
                 if (button1.value == "900 MGz") {
-                    button1.value = "Active";
-
-                  
+                    button1.value = "Active";  
                 }
                 else {
                     button1.value = "900 MGz"
@@ -110,19 +99,50 @@
                 .withUrl("/udp")
                 .build();
 
-
             document.getElementById("sendBtn1").addEventListener("click", function () {
 
+                let isPmOne = (button1.value == "Active") ? "false" : "true";
+                let isPmTwo = (button2.value == "Active") ? "false" : "true";
+                let isPmThre = (button3.value == "Active") ? "false" : "true";
+                let isPmFour = (button4.value == "Active") ? "false" : "true";
 
 
-                
-                hubConnection.invoke("Send", { 'Pm1' : 'true'});
-              
-            });
+                hubConnection.invoke("Send", { "PmStack" : [isPmOne,isPmTwo,isPmThre,isPmFour]});       
+            });          
+
+            document.getElementById("sendBtn2").addEventListener("click", function () {
+
+                let isPmOne = (button1.value == "Active") ? "false" : "true";
+                let isPmTwo = (button2.value == "Active") ? "false" : "true";
+                let isPmThre = (button3.value == "Active") ? "false" : "true";
+                let isPmFour = (button4.value == "Active") ? "false" : "true";
 
 
+                hubConnection.invoke("Send", { "PmStack" : [isPmOne,isPmTwo,isPmThre,isPmFour]});       
+            });          
 
-          
+            document.getElementById("sendBtn3").addEventListener("click", function () {
+
+                let isPmOne = (button1.value == "Active") ? "false" : "true";
+                let isPmTwo = (button2.value == "Active") ? "false" : "true";
+                let isPmThre = (button3.value == "Active") ? "false" : "true";
+                let isPmFour = (button4.value == "Active") ? "false" : "true";
+
+
+                hubConnection.invoke("Send", { "PmStack" : [isPmOne,isPmTwo,isPmThre,isPmFour]});       
+            });        
+            
+            document.getElementById("sendBtn4").addEventListener("click", function () {
+
+                let isPmOne = (button1.value == "Active") ? "false" : "true";
+                let isPmTwo = (button2.value == "Active") ? "false" : "true";
+                let isPmThre = (button3.value == "Active") ? "false" : "true";
+                let isPmFour = (button4.value == "Active") ? "false" : "true";
+
+
+                hubConnection.invoke("Send", { "PmStack" : [isPmOne,isPmTwo,isPmThre,isPmFour]});       
+            });       
+
             hubConnection.start();
 
             

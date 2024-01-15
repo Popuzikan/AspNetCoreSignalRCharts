@@ -20,6 +20,7 @@ builder.Services.AddSingleton(_ =>
 
 //builder.Services.AddHostedService<ChartValueGenerator>();
 builder.Services.AddHostedService<UDPServer>();
+builder.Services.AddHostedService<UDPSendServer>();
 
 
 var app = builder.Build();
