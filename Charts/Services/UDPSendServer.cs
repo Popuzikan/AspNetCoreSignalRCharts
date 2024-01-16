@@ -5,7 +5,7 @@ namespace Charts.Services
 {
     public class UDPSendServer : BackgroundService
     {
-        public UdpClient udpClient = null;
+        public static UdpClient udpClient = null;
 
 
         public UDPSendServer()
@@ -23,7 +23,7 @@ namespace Charts.Services
         }
 
 
-        public async Task SendCommand(SendDate send)
+        public static async Task SendCommand(SendDate send)
         {
             using (MemoryStream stream = new MemoryStream())
             {
@@ -47,9 +47,9 @@ namespace Charts.Services
             }
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-                return Task.Delay(TimeSpan.FromSeconds(0.1), stoppingToken);
+                await Task.Delay(TimeSpan.FromSeconds(0.1), stoppingToken);
         }
     }
 }

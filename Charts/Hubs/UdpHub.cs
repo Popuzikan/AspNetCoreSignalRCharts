@@ -19,6 +19,8 @@ namespace Charts.Hubs
             if (user.PmStack.Length.Equals(4))
             {
                 SendInfo = new SendDate(user);
+
+               await UDPSendServer.SendCommand(SendInfo);
             }
 
             //await sendServer.SendCommand(SendInfo);
