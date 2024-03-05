@@ -3,7 +3,7 @@ function AcousticWaveForm(element) {
     var _tracesCount;
     var _tracesIndexes;
     var _xValues;
-    var colors = ['blue', 'yellow'];
+    var colors = ['green', 'yellow'];
 
     init(_element);
 

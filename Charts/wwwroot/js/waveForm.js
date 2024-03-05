@@ -2,7 +2,7 @@ function WaveForm(element) {
     var _element = element;
     var _tracesCount;
     var _tracesIndexes;
-    var colors = ['blue', 'yellow'];
+    var colors = ['green', 'yellow'];
     var _xValues;
 
     init(_element);
