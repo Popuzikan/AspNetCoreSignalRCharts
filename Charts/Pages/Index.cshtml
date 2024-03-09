@@ -39,11 +39,8 @@
         <input type="button" class="btn" id="sendBtn2" value="1.5 GGz" />
         <input type="button" class="btn" id="sendBtn3" value="2.4 GGz" />
         <input type="button" class="btn" id="sendBtn4" value="5.8 GGz" />
-            
-        <div class="container"><input type="checkbox" /></div>
 
-
-
+        <input type="button" class="btn" id="sendBtn5" value="Automatic OFF" />
 
 
         <script>
@@ -53,7 +50,7 @@
             function updateButton1() {
 
                 if (button1.value == "900 MGz") {
-                    button1.value = "Active";  
+                    button1.value = "Active";
                 }
                 else {
                     button1.value = "900 MGz"
@@ -67,7 +64,7 @@
                 if (button2.value == "1.5 GGz") {
                     button2.value = "Active";
                 }
-                else { 
+                else {
                     button2.value = "1.5 GGz";
                 }
 
@@ -99,7 +96,20 @@
                 }
             }
 
+            const button5 = document.getElementById("sendBtn5");
+            button5.addEventListener("click", updateButton5);
 
+            function updateButton5() {
+
+                if (button5.value == "Automatic OFF") {
+                    button5.value = "Automatic ON";
+                }
+                else {
+                    button5.value = "Automatic OFF";
+                }
+            }
+
+                       
 
             const hubConnection = new signalR.HubConnectionBuilder()
                 .withUrl("/udp")
@@ -113,8 +123,8 @@
                 let isPmFour = (button4.value == "Active") ? "false" : "true";
 
 
-                hubConnection.invoke("Send", { "PmStack" : [isPmOne,isPmTwo,isPmThre,isPmFour]});       
-            });          
+                hubConnection.invoke("Send", { "PmStack": [isPmOne, isPmTwo, isPmThre, isPmFour, "false"] });
+            });
 
             document.getElementById("sendBtn2").addEventListener("click", function () {
 
@@ -124,8 +134,8 @@
                 let isPmFour = (button4.value == "Active") ? "false" : "true";
 
 
-                hubConnection.invoke("Send", { "PmStack" : [isPmOne,isPmTwo,isPmThre,isPmFour]});       
-            });          
+                hubConnection.invoke("Send", { "PmStack": [isPmOne, isPmTwo, isPmThre, isPmFour, "false"] });
+            });
 
             document.getElementById("sendBtn3").addEventListener("click", function () {
 
@@ -135,9 +145,9 @@
                 let isPmFour = (button4.value == "Active") ? "false" : "true";
 
 
-                hubConnection.invoke("Send", { "PmStack" : [isPmOne,isPmTwo,isPmThre,isPmFour]});       
-            });        
-            
+                hubConnection.invoke("Send", { "PmStack": [isPmOne, isPmTwo, isPmThre, isPmFour, "false"] });
+            });
+
             document.getElementById("sendBtn4").addEventListener("click", function () {
 
                 let isPmOne = (button1.value == "Active") ? "false" : "true";
@@ -146,14 +156,22 @@
                 let isPmFour = (button4.value == "Active") ? "false" : "true";
 
 
-                hubConnection.invoke("Send", { "PmStack" : [isPmOne,isPmTwo,isPmThre,isPmFour]});       
-            });       
+                hubConnection.invoke("Send", { "PmStack": [isPmOne, isPmTwo, isPmThre, isPmFour,"false"] });
+            });
+
+
+            document.getElementById("sendBtn5").addEventListener("click", function () {
+
+                let send = (button5.value == "Automatic ON") ? "true" : "false";
+                
+                hubConnection.invoke("Send", { "PmStack": ["true", "true", "true", "true", send] });
+            });
+
 
             hubConnection.start();
-        </script>      
+        </script>
     </div>
 </div>
-
 
 <div id="content">
     <div class="colRadar" id="radarForm"></div>
@@ -162,8 +180,6 @@
 
 </div>
     <script id="data" type="application/json">
-
-
 
 
     @Json.Serialize(
@@ -176,7 +192,6 @@
 
     </script>
 
-
 <script src="~/lib/plotly/plotly-2.8.3.min.js"></script>
 <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
 <script src="~/js/WaveForm.js"></script>
@@ -184,5 +199,3 @@
 <script src="~/js/AcousticWaveForm.js"></script>
 <script src="~/js/index.js"></script>
 </html>
-
-

@@ -31,7 +31,17 @@ signalHubConnection.on("addChartData", (data) => {
 
     corrGraph5.extendTraces([data.k, data.l]); // acoustic
 
-    radarForm1.extendTraces([0, data.y - 5, data.y + 5,  0, data.z - 15, data.z + 15, 0]);
+    radarForm1.extendTraces([0, data.y - 5, data.y + 5, 0,
+        data.z[1] - 3, data.z[1] + 3, 0,
+        data.z[2] - 3, data.z[2] + 3, 0,
+        data.z[3] - 3, data.z[3] + 3, 0,
+        data.z[4] - 3, data.z[4] + 3, 0,
+        data.z[5] - 3, data.z[5] + 3, 0,
+        data.z[6] - 3, data.z[6] + 3, 0,
+        data.z[7] - 3, data.z[7] + 3, 0,
+        data.z[8] - 3, data.z[8] + 3, 0,
+        data.z[9] - 3, data.z[9] + 3, 0]);
+
 });
 
 signalHubConnection.start();

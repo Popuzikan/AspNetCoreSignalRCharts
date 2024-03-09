@@ -29,6 +29,7 @@
     border-radius: 5px;
 }
 
+
 .colRadar {
     position: absolute;
     top: 50%;
@@ -74,63 +75,5 @@ a {
     border-radius: 0.3em;
 }
 
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    position: absolute;
-    margin: 890px 20px 200px 390px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    cursor: pointer;
-    outline: none;
-    height: 5.6em;
-    width: 12.5em;
-    background-color: #808080;
-    -webkit-transform: skewX(-7deg);
-    -ms-transform: skewX(-7deg);
-    transform: skewX(-7deg);
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-}
 
-    input[type="checkbox"]:before {
-        font-size: 1.5em;
-        content: "OFF";
-        position: absolute;
-        width: 3.75em;
-        height: 2.9em;
-        background-color: #2d2936;
-        color: #a0a0a0;
-        top: 0.42em;
-        left: 0.42em;
-        -webkit-transition: 0.3s;
-        -o-transition: 0.3s;
-        transition: 0.3s;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        font-family: "Poppins", sans-serif;
-        font-weight: 600;
-        letter-spacing: 1px;
-    }
-
-    input[type="checkbox"]:checked {
-        background: -o-linear-gradient(315deg, #0f9b0f, #3C3B3F);
-        background: linear-gradient(135deg, #0f9b0f, #3C3B3F);
-    }
-
-        input[type="checkbox"]:checked:before {
-            content: "ON";
-            left: 4.1em;
-            color: #0f9b0f;
-        }
+    

@@ -3,13 +3,17 @@ function AcousticWaveForm(element) {
     var _tracesCount;
     var _tracesIndexes;
     var _xValues;
-    var colors = ['green', 'yellow'];
+    var mod = ['lines','lines'];
+
+    var type = ['spline', 'bar']
+    var colors = ['red', 'green'];
+    var width = [1, 1];
 
     init(_element);
 
     function init(element) {
         var secondsAccumulationTime = 0.02;
-        var SamplingRate = 850;
+        var SamplingRate = 425;
         _xValues = Array(SamplingRate).fill().map((_, i) => i);
 
         var layout = {
@@ -96,14 +100,14 @@ function AcousticWaveForm(element) {
             return {
                 y: [],
                 x: _xValues,
-                mode: 'lines',
+                mode: mod[i],
                // name: 'Канал ' + (i + 1),
                 fill: 'tonexty',
                 //type: 'bar',
                 line: {
-                    shape: 'spline',
+                    shape: type[i],
                     color: colors[i],
-                    width : 1
+                    width: width[i]
                 }
             };
         })

@@ -24,7 +24,7 @@
             //UgolMesta_flag = 0;
             //UgolMesta = 0;
             PmStack = pmStack;
-
+            
             //for (int i = 0; i < pmStack.Length; i++)
             //{
             //    isPmActive[i] = bool.Parse(pmStack[i]);

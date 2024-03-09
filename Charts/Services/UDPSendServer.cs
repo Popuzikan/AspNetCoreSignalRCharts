@@ -22,7 +22,6 @@ namespace Charts.Services
             }
         }
 
-
         public static async Task SendCommand(SendDate send)
         {
             using (MemoryStream stream = new MemoryStream())
@@ -49,7 +48,7 @@ namespace Charts.Services
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-                await Task.Delay(TimeSpan.FromSeconds(0.1), stoppingToken);
+            await Task.Delay(TimeSpan.FromSeconds(0.1), stoppingToken);
         }
     }
 }

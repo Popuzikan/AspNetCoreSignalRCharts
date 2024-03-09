@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Charts.StructTypes;
 using Charts.Services;
+using System.ComponentModel;
 
 namespace Charts.Hubs
 {
@@ -16,14 +17,18 @@ namespace Charts.Hubs
         public async Task Send(DataDevice user)
         {
 
-            if (user.PmStack.Length.Equals(4))
+            if (user.PmStack.Length.Equals(5))
             {
                 SendInfo = new SendDate(user);
 
                await UDPSendServer.SendCommand(SendInfo);
+
+                UDPServer.isAutoMode = Convert.ToBoolean(user.PmStack[4]);
             }
 
             //await sendServer.SendCommand(SendInfo);
+
+
 
             await Task.Delay(1);
         }

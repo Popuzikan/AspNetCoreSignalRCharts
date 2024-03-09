@@ -91,10 +91,18 @@ function RadarForm(element) {
                 return i
             });
 
-
         var traces = Array(_tracesCount).fill().map(function (_, i) {
             return {
-                 r: [0, 2, 2, 0, 2, 2, 0],
+                r: [0, 2, 2,
+                    0, 2, 2,
+                    0, 2, 2,
+                    0, 2, 2,
+                    0, 2, 2,
+                    0, 2, 2,
+                    0, 2, 2,
+                    0, 2, 2,
+                    0, 2, 2,
+                    0, 2, 2, 0],
                  theta: dataI,
               
                 mode: 'lines',
@@ -107,12 +115,8 @@ function RadarForm(element) {
                 line: {
                     color: 'green',
                     width: 2
-                },
-
-
-                
-            };
-            
+                }, 
+            };       
         })
         Plotly.addTraces(_element, traces);
     }
